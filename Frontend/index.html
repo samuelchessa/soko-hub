@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SokoHub | Products & Services</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo">Soko<span>Hub</span></a>
+
+        <nav>
+            <a href="#products">Products</a>
+            <a href="#services">Services</a>
+        </nav>
+
+        <button class="post-btn" id="postButton">
+            + Post Listing
+        </button>
+    </header>
+
+    <main>
+        <section class="hero">
+            <p class="eyebrow">YOUR ONE-STOP MARKETPLACE</p>
+
+            <h1>Everything you need,<br>in one place.</h1>
+
+            <p class="hero-text">
+                Discover great products and connect with
+                skilled service providers.
+            </p>
+
+            <form class="search-box" id="searchForm">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="What are you looking for?"
+                    aria-label="Search products and services"
+                >
+                <button type="submit">Search</button>
+            </form>
+
+            <p class="location-note">📍 Explore products and services in Kenya</p>
+        </section>
+
+        <section class="section">
+            <p class="eyebrow">EXPLORE</p>
+            <h2>Browse categories</h2>
+
+            <div class="category-grid">
+                <button class="category" data-category="Electronics">📱 Electronics</button>
+                <button class="category" data-category="Fashion">👕 Fashion</button>
+                <button class="category" data-category="Home">🛋️ Home & Living</button>
+                <button class="category" data-category="Technology">💻 Technology</button>
+                <button class="category" data-category="Repairs">🔧 Repairs</button>
+                <button class="category" data-category="Design">🎨 Design</button>
+            </div>
+        </section>
+
+        <section class="section" id="products">
+            <p class="eyebrow">SHOP ONLINE</p>
+            <h2>Featured products</h2>
+
+            <div class="listing-grid">
+                <article class="listing-card" data-category="Electronics">
+                    <div class="listing-image">📱</div>
+                    <div class="listing-info">
+                        <p class="listing-category">Electronics</p>
+                        <h3>Smartphone</h3>
+                        <p class="price">KSh 15,000</p>
+                        <p class="seller">📍 Nairobi, Kenya</p>
+                        <button class="contact-btn">View details</button>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-type="product" data-category="Technology"></article>
+                    <div class="listing-image">💻</div>
+                    <div class="listing-info">
+                        <p class="listing-category">Technology</p>
+                        <h3>Laptop</h3>
+                        <p class="price">KSh 35,000</p>
+                        <p class="seller">📍 Machakos, Kenya</p>
+                        <button class="contact-btn">View details</button>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="Fashion">
+                    <div class="listing-image">👟</div>
+                    <div class="listing-info">
+                        <p class="listing-category">Fashion</p>
+                        <h3>Casual Sneakers</h3>
+                        <p class="price">KSh 2,500</p>
+                        <p class="seller">📍 Thika, Kenya</p>
+                        <button class="contact-btn">View details</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section services-section" id="services">
+            <p class="eyebrow">HIRE AN EXPERT</p>
+            <h2>Popular services</h2>
+
+            <div class="listing-grid">
+                <article class="listing-card" data-category="Technology">
+                    <div class="listing-image">💻</div>
+                    <div class="listing-info">
+                        <p class="listing-category">Technology</p>
+                        <h3>Website Development</h3>
+                        <p class="price">From KSh 3,000</p>
+                        <p class="seller">📍 Available in Kenya</p>
+                        <button class="contact-btn">View details</button>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="Repairs">
+                    <div class="listing-image">🔧</div>
+                    <div class="listing-info">
+                        <p class="listing-category">Repairs</p>
+                        <h3>Plumbing Services</h3>
+                        <p class="price">Request a quote</p>
+                        <p class="seller">📍 Nairobi, Kenya</p>
+                        <button class="contact-btn">View details</button>
+                    </div>
+                </article>
+
+                <article class="listing-card" data-category="Design">
+                    <div class="listing-image">🎨</div>
+                    <div class="listing-info">
+                        <p class="listing-category">Design</p>
+                        <h3>Graphic Design</h3>
+                        <p class="price">From KSh 500</p>
+                        <p class="seller">📍 Available online</p>
+                        <button class="contact-btn">View details</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="join-section">
+            <h2>Have a product to sell or a skill to offer?</h2>
+            <p>Connect with customers by listing your products or services.</p>
+            <button class="post-btn" id="joinButton">
+                Start listing
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#" class="logo">Soko<span>Hub</span></a>
+        <p>Connecting people to products and services.</p>
+        <p>© 2026 SokoHub. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
