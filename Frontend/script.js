@@ -1,138 +1,120 @@
-// SOKOHUB MARKETPLACE JAVASCRIPT
+
+// SOKOHUB - SERVICES MARKETPLACE JAVASCRIPT
 
 document.addEventListener("DOMContentLoaded", function () {
-
-    const searchInput = document.getElementById("searchInput");
     const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
     const cards = document.querySelectorAll(".listing-card");
     const categoryButtons = document.querySelectorAll(".category");
+    const noResults = document.getElementById("noResults");
+    const postButton = document.getElementById("postButton");
+    const joinButton = document.getElementById("joinButton");
 
     let selectedCategory = "";
-    let selectedType = "";
 
-    // Search and filter listings
-    function filterListings() {
-        const searchText = searchInput
-            ? searchInput.value.toLowerCase().trim()
-            : "";
+    // Search services and filter by category
+    function filterServices() {
+        const searchText = searchInput.value.trim().toLowerCase();
+        let visibleCount = 0;
 
         cards.forEach(function (card) {
             const cardText = card.textContent.toLowerCase();
             const cardCategory = card.dataset.category || "";
-            const cardType = card.dataset.type || "";
 
             const matchesSearch = cardText.includes(searchText);
-
             const matchesCategory =
                 selectedCategory === "" ||
                 cardCategory === selectedCategory;
 
-            const matchesType =
-                selectedType === "" ||
-                cardType === selectedType;
+            const isVisible = matchesSearch && matchesCategory;
 
-            card.hidden = !(
-                matchesSearch &&
-                matchesCategory &&
-                matchesType
-            );
+            card.hidden = !isVisible;
+
+            if (isVisible) {
+                visibleCount++;
+            }
         });
+
+        noResults.hidden = visibleCount > 0;
     }
 
-    // Search while typing
-    if (searchInput) {
-        searchInput.addEventListener("input", function () {
-            selectedCategory = "";
-            selectedType = "";
-            filterListings();
-        });
-    }
-
-    // Search when Search button is clicked
-  if (searchForm) {
+    // Search when the form is submitted
     searchForm.addEventListener("submit", function (event) {
         event.preventDefault();
+        filterServices();
 
-        console.log("Search submitted!");
-        console.log("Search word:", searchInput.value);
-
-        selectedCategory = "";
-        selectedType = "";
-
-        filterListings();
+        document.getElementById("services").scrollIntoView({
+            behavior: "smooth"
+        });
     });
-}
-    
 
-    // Filter by category
+    // Search as the user types
+    searchInput.addEventListener("input", function () {
+        filterServices();
+    });
+
+    // Filter services by category
     categoryButtons.forEach(function (button) {
         button.addEventListener("click", function () {
             selectedCategory = button.dataset.category || "";
-            selectedType = "";
 
-            if (searchInput) {
-                searchInput.value = "";
-            }
+            categoryButtons.forEach(function (categoryButton) {
+                categoryButton.classList.remove("active");
+            });
 
-            filterListings();
+            button.classList.add("active");
+
+            searchInput.value = "";
+            filterServices();
+
+            document.getElementById("services").scrollIntoView({
+                behavior: "smooth"
+            });
         });
     });
 
-    // View all products or services
-    document.querySelectorAll("[data-show]").forEach(function (button) {
-        button.addEventListener("click", function () {
-            selectedType = button.dataset.show === "products"
-                ? "product"
-                : "service";
-
-            selectedCategory = "";
-
-            if (searchInput) {
-                searchInput.value = "";
-            }
-
-            filterListings();
-        });
-    });
-
-    // View listing details
+    // Contact a service provider
     document.querySelectorAll(".contact-btn").forEach(function (button) {
         button.addEventListener("click", function () {
             const card = button.closest(".listing-card");
-
-            if (!card) return;
-
-            const title = card.querySelector("h3");
-            const price = card.querySelector(".price");
-            const category = card.querySelector(".listing-category");
+            const title = card.querySelector("h3").textContent;
+            const price = card.querySelector(".price").textContent;
 
             alert(
-                "SokoHub Listing Details\n\n" +
-                "Name: " + (title ? title.textContent : "Not available") +
-                "\nPrice: " + (price ? price.textContent : "Contact seller") +
-                "\nCategory: " + (category ? category.textContent : "Not available")
+                "SokoHub Service\n\n" +
+                "Service: " + title + "\n" +
+                "Price: " + price +
+                "\n\nProvider contact details will be added soon."
             );
         });
     });
 
-    // Post listing buttons
-    function postListing() {
-        alert("Welcome to SokoHub! The listing submission form will be added next.");
+    // Offer a service
+    function offerService() {
+        alert(
+            "Welcome to SokoHub!\n\n" +
+            "A form for adding your service will be added next."
+        );
     }
 
-    const postButton = document.getElementById("postButton");
-    const joinButton = document.getElementById("joinButton");
-
     if (postButton) {
-        postButton.addEventListener("click", postListing);
+        postButton.addEventListener("click", offerService);
     }
 
     if (joinButton) {
-        joinButton.addEventListener("click", postListing);
+        joinButton.addEventListener("click", offerService);
     }
 
-    // Initial display
-    filterListings();
+    // Show all services when the page first opens
+    const allServicesButton = document.querySelector(
+        '.category[data-category=""]'
+    );
 
-    console.log("SokoHub JavaScript loaded successfully!");
+    if (allServicesButton) {
+        allServicesButton.classList.add("active");
+    }
+
+    filterServices();
+
+    console.log("SokoHub services marketplace loaded successfully!");
 });
