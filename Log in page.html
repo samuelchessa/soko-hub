@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soko Hub | Welcome</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green: #086b4b;
+      --dark-green: #064e3b;
+      --light-green: #e9f5ef;
+      --text: #17352b;
+      --muted: #718078;
+      --border: #dce7e0;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f8f5;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      padding: 20px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #d59a32;
+    }
+
+    .tagline {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    .home-link {
+      color: var(--green);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Main layout */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 45px 20px;
+    }
+
+    .auth-container {
+      width: 100%;
+      max-width: 1000px;
+      min-height: 570px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 45px rgba(22, 65, 44, 0.08);
+    }
+
+    /* Left panel */
+    .welcome-panel {
+      background: var(--dark-green);
+      color: white;
+      padding: 55px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-panel::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      top: -100px;
+      right: -130px;
+    }
+
+    .welcome-panel::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      bottom: -100px;
+      left: -90px;
+    }
+
+    .welcome-icon {
+      font-size: 48px;
+      margin-bottom: 25px;
+    }
+
+    .welcome-panel h1 {
+      font-size: 36px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .welcome-panel h1 span {
+      color: #a7e6c3;
+    }
+
+    .welcome-panel p {
+      color: #d8eae0;
+      line-height: 1.8;
+      font-size: 15px;
+      max-width: 350px;
+    }
+
+    .benefits {
+      margin-top: 35px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #e8f4ec;
+    }
+
+    .check {
+      background: rgba(255,255,255,0.15);
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    /* Right panel */
+    .form-panel {
+      padding: 45px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-panel h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      background: #f0f5f1;
+      padding: 5px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+    }
+
+    .tab {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 12px;
+      border-radius: 7px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: white;
+      color: var(--green);
+      box-shadow: 0 2px 7px rgba(0,0,0,0.06);
+    }
+
+    /* Form fields */
+    .field {
+      margin-bottom: 17px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 14px;
+      outline: none;
+      background: #fcfdfc;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+
+    .field input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(8,107,75,0.08);
+    }
+
+    .password-wrap {
+      position: relative;
+    }
+
+    .password-wrap input {
+      padding-right: 70px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--green);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin: 2px 0 22px;
+      font-size: 12px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+    }
+
+    .text-link {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary-button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 9px;
+      background: var(--green);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .primary-button:hover {
+      background: var(--dark-green);
+      transform: translateY(-1px);
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff0f0;
+      color: #a12626;
+      border: 1px solid #f2cccc;
+    }
+
+    .message.success {
+      display: block;
+      background: #e9f7ef;
+      color: #17643e;
+      border: 1px solid #c7e9d4;
+    }
+
+    .terms {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Mobile layout */
+    @media (max-width: 760px) {
+      header {
+        padding: 18px 6%;
+      }
+
+      .auth-container {
+        grid-template-columns: 1fr;
+        max-width: 460px;
+      }
+
+      .welcome-panel {
+        padding: 30px 28px;
+      }
+
+      .welcome-panel h1 {
+        font-size: 28px;
+      }
+
+      .welcome-icon {
+        font-size: 35px;
+        margin-bottom: 15px;
+      }
+
+      .benefits {
+        display: none;
+      }
+
+      .form-panel {
+        padding: 32px 25px;
+      }
+
+      main {
+        padding: 25px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div>
+      <div class="logo">Soko<span>Hub</span></div>
+      <div class="tagline">BUY · SELL · GROW</div>
+    </div>
+
+    <a href="index.html" class="home-link">← Back to Home</a>
+  </header>
+
+  <main>
+    <div class="auth-container">
+
+      <section class="welcome-panel">
+        <div class="welcome-icon">🌿</div>
+
+        <h1>
+          Your skills.<br>
+          Your community.<br>
+          <span>Your opportunity.</span>
+        </h1>
+
+        <p>
+          Discover trusted services, connect with skilled
+          providers, and grow your opportunities with Soko Hub.
+        </p>
+
+        <div class="benefits">
+          <div class="benefit">
+            <span class="check">✓</span>
+            Discover services around you
+          </div>
+
+          <div class="benefit">
+            <span class="check">✓</span>
+            Connect with service providers
+          </div>
+
+          <div class="benefit">
+            <span class="check">✓</span>
+            Turn your skills into income
+          </div>
+        </div>
+      </section>
+
+      <section class="form-panel">
+
+        <h2 id="formTitle">Welcome back!</h2>
+
+        <p class="subtitle" id="formSubtitle">
+          Sign in to continue exploring Soko Hub.
+        </p>
+
+        
+<div class="tabs">
+    <button class="tab active" id="loginTab" type="button">
+        Sign In
+    </button>
+
+    <button
+        class="tab"
+        id="registerTab"
+        type="button"
+        onclick="window.location.href='Create an account page.html'">
+        Create Account
+    </button>
+</div>
+
+        <div id="message" class="message" role="status"
+             aria-live="polite"></div>
+
+        <form id="authForm" novalidate>
+
+          <div class="field" id="nameField" hidden>
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="Enter your full name"
+              autocomplete="name"
+            >
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+
+            <div class="password-wrap">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="password"
+              >
+                Show
+              </button>
+            </div>
+          </div>
+
+          <div class="field" id="confirmField" hidden>
+            <label for="confirmPassword">Confirm Password</label>
+
+            <div class="password-wrap">
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Enter password again"
+                autocomplete="new-password"
+              >
+
+              <button
+                type="button"
+                class="toggle-password"
+                data-target="confirmPassword"
+              >
+                Show
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options" id="loginOptions">
+            <label class="remember">
+              <input type="checkbox" id="remember">
+              Remember me
+            </label>
+
+            <a href="#" class="text-link" id="forgotPassword">
+              Forgot password?
+            </a>
+          </div>
+
+          <button type="submit" class="primary-button" id="submitButton">
+            Sign In
+          </button>
+
+        </form>
+
+        <label class="terms">
+    <input type="checkbox" id="agreeTerms" required>
+    <span>
+        I agree to the
+        <a href="terms.html">Terms and Conditions</a>
+        and
+        <a href="privacy.html">Privacy Policy</a>.
+    </span>
+</label>
+
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Soko Hub. Built for our community.
+  </footer>
+
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const form = document.getElementById("authForm");
+
+    const formTitle = document.getElementById("formTitle");
+    const formSubtitle = document.getElementById("formSubtitle");
+    const nameField = document.getElementById("nameField");
+    const confirmField = document.getElementById("confirmField");
+    const loginOptions = document.getElementById("loginOptions");
+    const submitButton = document.getElementById("submitButton");
+    const message = document.getElementById("message");
+
+    const fullName = document.getElementById("fullName");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+
+    let currentMode = "login";
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.className = "message";
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      const registering = mode === "register";
+
+      loginTab.classList.toggle("active", !registering);
+      registerTab.classList.toggle("active", registering);
+
+      nameField.hidden = !registering;
+      confirmField.hidden = !registering;
+      loginOptions.hidden = registering;
+
+      fullName.required = registering;
+      confirmPassword.required = registering;
+
+      password.autocomplete = registering
+        ? "new-password"
+        : "current-password";
+
+      formTitle.textContent = registering
+        ? "Create your account"
+        : "Welcome back!";
+
+      formSubtitle.textContent = registering
+        ? "Join Soko Hub and discover new opportunities."
+        : "Sign in to continue exploring Soko Hub.";
+
+      submitButton.textContent = registering
+        ? "Create Account"
+        : "Sign In";
+
+      clearMessage();
+    }
+
+    loginTab.addEventListener("click", () => setMode("login"));
+    registerTab.addEventListener("click", () => setMode("register"));
+
+    document.querySelectorAll(".toggle-password").forEach(button => {
+      button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.target);
+        const showing = input.type === "text";
+
+        input.type = showing ? "password" : "text";
+        button.textContent = showing ? "Show" : "Hide";
+      });
+    });
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      clearMessage();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (currentMode === "register") {
+        if (password.value.length < 8) {
+          showMessage(
+            "Your password must contain at least 8 characters.",
+            "error"
+          );
+          password.focus();
+          return;
+        }
+
+        if (password.value !== confirmPassword.value) {
+          showMessage(
+            "Your passwords do not match. Please try again.",
+            "error"
+          );
+          confirmPassword.focus();
+          return;
+        }
+
+        showMessage(
+          "Your form is valid! Account creation is not connected yet. " +
+          "Next, connect Supabase Authentication.",
+          "success"
+        );
+      } else {
+        showMessage(
+          "Your form is valid! Sign-in is not connected yet. " +
+          "Next, connect Supabase Authentication.",
+          "success"
+        );
+      }
+    });
+
+    document.getElementById("forgotPassword")
+      .addEventListener("click", event => {
+        event.preventDefault();
+
+        showMessage(
+          "Password reset will be available once we connect " +
+          "Supabase Authentication.",
+          "success"
+        );
+      });
+  </script>
+
+</body>
+</html>
