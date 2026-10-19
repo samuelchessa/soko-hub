@@ -1,0 +1,11 @@
+
+SELECT
+    u.id AS auth_user_id,
+    u.email,
+    p.id AS profile_id,
+    p.full_name,
+    p.role
+FROM auth.users AS u
+LEFT JOIN public.profiles AS p
+    ON p.id = u.id
+WHERE u.email = 'oboteruth851@gmail.com';
